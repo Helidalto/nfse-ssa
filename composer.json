@@ -1,7 +1,6 @@
 {
     "name": "Helidalto/NFSeGinfes",
     "description": "Pacote de emissão de nota fiscal de serviço GINFES adaptado de Potello potelo/nfse-ssa",
-    "type": "library",
     "require": {
         "robrichards/xmlseclibs": "^3.0"
     },
@@ -27,5 +26,5 @@
             ]
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"    
 }
