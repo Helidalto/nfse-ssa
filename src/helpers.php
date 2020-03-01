@@ -28,6 +28,7 @@ if (!function_exists('array_get')) {
     {
         if (array_key_exists($key, $array)) 
         {
+            
             return $array[$key];
         }
 
