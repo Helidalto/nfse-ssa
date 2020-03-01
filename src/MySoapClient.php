@@ -13,22 +13,20 @@ class MySoapClient extends \SoapClient {
     public $soapRequest;
     public function __doRequest($request, $location, $action, $version, $one_way = 0) {
 
-        $request = str_replace('xmlns:ns2="<anyXML>"', '', $request);
-        $request = str_replace(':ns1', '', $request);
-        $request = str_replace('ns1:', '', $request);
-        $request = str_replace("\n", '', $request);
-        $request = str_replace("\r", '', $request);
-        $request = preg_replace('/(\>)\s*(\<)/m', '$1$2', $request);
-
+        //comentei essas linhas e a partir dai começou a comunicar normalmente
+        //$request = str_replace('xmlns:ns2="<anyXML>"', '', $request);
+        //$request = str_replace(':ns1', '', $request);
+        //$request = str_replace('ns1:', '', $request);
+        //$request = str_replace("\n", '', $request);
+        //$request = str_replace("\r", '', $request);
+        //$request = preg_replace('/(\>)\s*(\<)/m', '$1$2', $request);
         //$request = $this->sanitizeOutput($request);
-
-        $this->soapRequest = $request;
+        //$this->soapRequest = $request;
 
         return (parent::__doRequest($request, $location, $action, $version));
     }
 
     function sanitizeOutput($buffer) {
-
         $search = array(
             '/\>[^\S ]+/s',     // strip whitespaces after tags, except space
             '/[^\S ]+\</s',     // strip whitespaces before tags, except space
@@ -48,4 +46,5 @@ class MySoapClient extends \SoapClient {
         return $buffer;
     }
 
-} //fim da classe NFSeSOAPClient
+} 
+//fim da classe NFSeSOAPClient

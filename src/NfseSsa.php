@@ -27,12 +27,9 @@ class NfseSsa
      */
     public function enviarLoteRps($dados)
     {
-        $xml = xml_view('EnviarLoteRPS', $dados);
-
-        $signedXml = $this->signatureService->signXml($xml, true, ['Rps']);
-
+        $xml = xml_view('EnviarLoteRPS', $dados);        
+        $signedXml = $this->signatureService->signXml($xml, true, ['EnviarLoteRpsEnvio']);
         $result = $this->requestService->enviarLoteRps($signedXml);
-
         return $result;
     }
 
@@ -46,9 +43,9 @@ class NfseSsa
     public function consultarSituacaoLoteRps($dados)
     {
         $xml = xml_view('ConsultarSituacaoLoteRPS', $dados);
-
-        $result = $this->requestService->consultarSituacaoLoteRps($xml);
-
+        //$result = $this->requestService->consultarSituacaoLoteRps($xml);
+        $signedXml = $this->signatureService->signXml($xml, true, ['ConsultarSituacaoLoteRpsEnvio']);
+        $result = $this->requestService->consultarSituacaoLoteRps($signedXml);                
         return $result;
     }
 
@@ -62,11 +59,26 @@ class NfseSsa
     public function consultarLoteRps($dados)
     {
         $xml = xml_view('ConsultarLoteRPS', $dados);
-
-        $result = $this->requestService->consultarLoteRps($xml);
-
+        //$result = $this->requestService->consultarLoteRps($xml);
+        $signedXml = $this->signatureService->signXml($xml, true, ['ConsultarLoteRpsEnvio']);
+        $result = $this->requestService->consultarLoteRps($signedXml);                
         return $result;
     }
+
+    /**
+     * @param $dados
+     *
+     * @return
+     *
+     * @throws \Throwable
+     */
+    public function cancelarNFSe($dados)
+    {
+        $xml = xml_view('CancelarNfseEnvio', $dados);        
+        $signedXml = $this->signatureService->signXml($xml, true, ['CancelarNfseEnvio']);
+        $result = $this->requestService->cancelarNFSe($signedXml);                
+        return $result;
+    }    
 
     /**
      * @param $dados
@@ -78,9 +90,7 @@ class NfseSsa
     public function consultarNfseRps($dados)
     {
         $xml = xml_view('ConsultarNfseRPS', $dados);
-
         $result = $this->requestService->consultarNfseRps($xml);
-
         return $result;
     }
 

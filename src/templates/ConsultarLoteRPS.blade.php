@@ -1,10 +1,1 @@
-<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
-<ConsultarLoteRpsEnvio xmlns="http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd">
-    <Prestador>
-        {!! array_xml_get($dados['prestador'], 'cnpj') !!}
-
-        {!! array_xml_get($dados['prestador'], 'inscricao_municipal') !!}
-    </Prestador>
-
-    {!! array_xml_get($dados, 'protocolo') !!}
-</ConsultarLoteRpsEnvio>
+<?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?><ns3:ConsultarLoteRpsEnvio xmlns:ns3="http://www.ginfes.com.br/servico_consultar_lote_rps_envio_v03.xsd" xmlns:ns4="http://www.ginfes.com.br/tipos_v03.xsd"><ns3:Prestador>{!! array_xml_get($dados['prestador'], 'cnpj') !!}{!! array_xml_get($dados['prestador'], 'inscricao_municipal') !!}</ns3:Prestador>{!! array_xml_get3($dados, 'protocolo') !!}</ns3:ConsultarLoteRpsEnvio>
