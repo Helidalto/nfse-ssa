@@ -15,6 +15,7 @@
         "psr-4": {
             "Helidalto\\NFSeGinfes\\": "src/"
         },
+        
         "files": [
             "src/helpers.php"
         ]
