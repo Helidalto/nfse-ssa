@@ -1,9 +1,9 @@
-# NfseSsa
+# NFSeGinfes
 
 ## Introdução
 
 NfseSsa é um pacote para laravel que fornece uma interface para emissão de 
-Nota Fiscal de Serviços Eletrônica (NFS-e) em Salvador - BA.
+Nota Fiscal de Serviços padrão GINFES, este pacote foi clonado de potelo/nfse-ssa e modificado.
 
 ## Instalação Laravel 5.x
 
