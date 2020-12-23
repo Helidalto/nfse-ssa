@@ -148,7 +148,9 @@ class RequestService
             dd("<h2>Erro ao enviar o lote RPS!</h2>"); 
             echo $e->getMessage(); 
         }        
-        $xmlObj = simplexml_load_string($result);                                                         
+        $xmlObj = simplexml_load_string($result);
+        $xmlObj = new \DOMDocument();
+        $xmlObj->loadXML($result);                                                                                                         
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){
@@ -219,7 +221,9 @@ class RequestService
             dd("<h2>Erro ao consultar o lote RPS!</h2>"); 
             echo $e->getMessage(); 
         }          
-        $xmlObj = simplexml_load_string($result);                                                              
+        $xmlObj = simplexml_load_string($result);     
+        $xmlObj = new \DOMDocument();
+        $xmlObj->loadXML($result);                                                         
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){                        
@@ -282,7 +286,9 @@ class RequestService
             dd("<h2>Erro ao consultar o lote RPS!</h2>"); 
             echo $e->getMessage(); 
         }          
-        $xmlObj = simplexml_load_string($result);                                                 
+        $xmlObj = simplexml_load_string($result);     
+        $xmlObj = new \DOMDocument();
+        $xmlObj->loadXML($result);                                            
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){                        
@@ -360,7 +366,6 @@ class RequestService
         }       
          
         $xmlObj = simplexml_load_string($result);      
-        
         $xmlObj = new \DOMDocument();
         $xmlObj->loadXML($result);                                                  
         $response = new Response();
@@ -436,7 +441,9 @@ class RequestService
             dd("<h2>Erro ao cancelar NFSe!</h2>"); 
             echo $e->getMessage(); 
         }          
-        $xmlObj = simplexml_load_string($result);                                                             
+        $xmlObj = simplexml_load_string($result); 
+        $xmlObj = new \DOMDocument();
+        $xmlObj->loadXML($result);                                                            
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){                        
