@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Helidalto\\NFSeGinfes\\": "src/"
+            "Helidalto\\NfseSsa\\": "src/"
         },
         
         "files": [
@@ -23,10 +23,9 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Helidalto\\NFSeGinfes\\NfseSsaServiceProvider"
+                "Helidalto\\NfseSsa\\NfseSsaServiceProvider"
             ]
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true   
+    "minimum-stability": "dev"
 }
