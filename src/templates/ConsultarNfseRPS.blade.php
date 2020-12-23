@@ -1,16 +1,12 @@
 <?php echo '<?xml version="1.0" encoding="utf-8"?>'; ?>
-<ConsultarNfseRpsEnvio xmlns="http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd">
-    <IdentificacaoRps>
-        {!! array_xml_get($dados['identificacao_rps'], 'numero') !!}
-
-        {!! array_xml_get($dados['identificacao_rps'], 'serie') !!}
-
-        {!! array_xml_get($dados['identificacao_rps'], 'tipo') !!}
-    </IdentificacaoRps>
-
-    <Prestador>
-        {!! array_xml_get($dados['prestador'], 'cnpj') !!}
-
-        {!! array_xml_get($dados['prestador'], 'inscricao_municipal') !!}
-    </Prestador>
-</ConsultarNfseRpsEnvio>
+<ns3:ConsultarNfseRpsEnvio xmlns:ns3="http://www.ginfes.com.br/servico_consultar_nfse_rps_envio_v03.xsd">
+<ns3:IdentificacaoRps>
+    <Numero xmlns="http://www.ginfes.com.br/tipos_v03.xsd">{{$dados['nfse']['rps']}}</Numero>
+    <Serie xmlns="http://www.ginfes.com.br/tipos_v03.xsd">{{$dados['nfse']['serie']}}</Serie>
+    <Tipo xmlns="http://www.ginfes.com.br/tipos_v03.xsd">{{$dados['nfse']['tipo']}}</Tipo>
+</ns3:IdentificacaoRps>
+<ns3:Prestador>
+    <Cnpj xmlns="http://www.ginfes.com.br/tipos_v03.xsd">{{$dados['prestador']['cnpj']}}</Cnpj>
+    <InscricaoMunicipal xmlns="http://www.ginfes.com.br/tipos_v03.xsd">{{$dados['prestador']['inscricao_municipal']}}</InscricaoMunicipal>
+</ns3:Prestador>
+</ns3:ConsultarNfseRpsEnvio>

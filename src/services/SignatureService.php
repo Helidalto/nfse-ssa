@@ -1,12 +1,9 @@
 <?php
 
-namespace Potelo\NfseSsa\Services;
-
+namespace Helidalto\NfseSsa\Services;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class SignatureService
 {
@@ -21,10 +18,9 @@ class SignatureService
     public $certificatePublic;
 
     public function __construct()
-    {
-        $configuracao =  DB::table('configuracoes')->select("id","nfse_link")->where('id','=',Auth::user()->unidade)->first();
-        $this->certificatePrivate = config('nfse-ssa.certificado_privado_path'.$configuracao->id);
-        $this->certificatePublic = config('nfse-ssa.certificado_publico_path'.$configuracao->id);
+    {        
+        $this->certificatePrivate = config('nfse-ssa.certificado_privado_path');
+        $this->certificatePublic = config('nfse-ssa.certificado_publico_path');
     }
 
     /**

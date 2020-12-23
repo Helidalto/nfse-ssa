@@ -7,7 +7,6 @@ if (!function_exists('xml_view')) {
      * @param $data
      * @return string
      * @throws Throwable
-     * 
      */
     function xml_view($view, $data)
     {

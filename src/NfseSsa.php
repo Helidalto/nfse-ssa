@@ -72,6 +72,21 @@ class NfseSsa
      *
      * @throws \Throwable
      */
+    public function consultarNfseRps($dados)
+    {
+        $xml = xml_view('ConsultarNfseRPS', $dados);
+        $signedXml = $this->signatureService->signXml($xml, true, ['ConsultarNfseRpsEnvio']);
+        $result = $this->requestService->consultarNfseRps($signedXml);
+        return $result;
+    }
+    
+    /**
+     * @param $dados
+     *
+     * @return
+     *
+     * @throws \Throwable
+     */
     public function cancelarNFSe($dados)
     {
         $xml = xml_view('CancelarNfseEnvio', $dados);        
@@ -80,19 +95,7 @@ class NfseSsa
         return $result;
     }    
 
-    /**
-     * @param $dados
-     *
-     * @return
-     *
-     * @throws \Throwable
-     */
-    public function consultarNfseRps($dados)
-    {
-        $xml = xml_view('ConsultarNfseRPS', $dados);
-        $result = $this->requestService->consultarNfseRps($xml);
-        return $result;
-    }
+
 
     /**
      * @param $dados
