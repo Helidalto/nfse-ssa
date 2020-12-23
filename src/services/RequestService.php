@@ -221,9 +221,7 @@ class RequestService
             dd("<h2>Erro ao consultar o lote RPS!</h2>"); 
             echo $e->getMessage(); 
         }          
-        $xmlObj = simplexml_load_string($result);     
-        $xmlObj = new \DOMDocument();
-        $xmlObj->loadXML($result);                                                         
+        $xmlObj = simplexml_load_string($result);                                                 
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){                        
@@ -238,7 +236,7 @@ class RequestService
             //dd($response);            
         }else {        
             $xmlObj = new \DOMDocument();
-            $xmlObj->loadXML($result);                                       
+            $xmlObj->loadXML($result);                                      
             $getSituacao = $xmlObj->getElementsByTagName('Situacao');                    
             foreach ($getSituacao as $situacao){                
                 $response->setStatus(true);                
@@ -286,7 +284,7 @@ class RequestService
             dd("<h2>Erro ao consultar o lote RPS!</h2>"); 
             echo $e->getMessage(); 
         }          
-        $xmlObj = simplexml_load_string($result);                                               
+        $xmlObj = simplexml_load_string($result);                                                  
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){                        
@@ -298,9 +296,10 @@ class RequestService
             $error->correcao = $msgRetorno->getElementsByTagName('Correcao')->item(0)->nodeValue;
             $response->addError($error);            
             $response->setStatus(false);                       
-        }else {        
-
-            Storage::disk('local')->put('nfse/XML_NFSE_Resposta.xml', $result);
+        }else {  
+            Storage::disk('local')->put('nfse/XML_NFSE_Resposta.xml', $result);      
+            $xmlObj = new \DOMDocument();
+            $xmlObj->loadXML($result);
             $getListaNFSe = $xmlObj->getElementsByTagName('ListaNfse');      
             $data = [];                          
             foreach($getListaNFSe as $lista){ 
@@ -363,9 +362,7 @@ class RequestService
             echo $e->getMessage(); 
         }       
          
-        $xmlObj = simplexml_load_string($result);      
-        $xmlObj = new \DOMDocument();
-        $xmlObj->loadXML($result);                                                  
+        $xmlObj = simplexml_load_string($result);                                                       
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){  
@@ -380,6 +377,8 @@ class RequestService
             $response->setStatus(false);                       
         }else {        
             Storage::disk('local')->put('nfse/XML_NFSE__RPS_Resposta.xml', $result);
+            $xmlObj = new \DOMDocument();
+            $xmlObj->loadXML($result);
             $getListaNFSe = $xmlObj->getElementsByTagName('CompNfse');      
             $data = [];                          
             foreach($getListaNFSe as $lista){ 
