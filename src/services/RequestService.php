@@ -219,9 +219,7 @@ class RequestService
             dd("<h2>Erro ao consultar o lote RPS!</h2>"); 
             echo $e->getMessage(); 
         }          
-        $xmlObj = simplexml_load_string($result);             
-        //$xmlObj = new \DOMDocument();
-        //$xmlObj->loadXML($result);                                                  
+        $xmlObj = simplexml_load_string($result);                                                              
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){                        
@@ -284,9 +282,7 @@ class RequestService
             dd("<h2>Erro ao consultar o lote RPS!</h2>"); 
             echo $e->getMessage(); 
         }          
-        $xmlObj = simplexml_load_string($result);             
-        //$xmlObj = new \DOMDocument();
-        //$xmlObj->loadXML($result);                                                  
+        $xmlObj = simplexml_load_string($result);                                                 
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){                        
@@ -365,9 +361,8 @@ class RequestService
          
         $xmlObj = simplexml_load_string($result);      
         
-           
-        //$xmlObj = new \DOMDocument();
-        //$xmlObj->loadXML($result);                                                  
+        $xmlObj = new \DOMDocument();
+        $xmlObj->loadXML($result);                                                  
         $response = new Response();
 
         if(isset($xmlObj->ListaMensagemRetorno)){  
