@@ -459,21 +459,26 @@ class RequestService
             $xmlObj->loadXML($result);                
             $getNFSe = $xmlObj->getElementsByTagName('CancelarNfseResposta');                    
             foreach($getNFSe as $nfse){                
-                $response->setStatus(true);
-                //retornando sucesso true, e data de cancelamento da NFSe
-                $sucesso = $nfse->getElementsByTagName("Sucesso");
-                $dataHora = $nfse->getElementsByTagName("DataHora");    
-                $data = array('sucesso' => $sucesso->item(0)->nodeValue, 'data' => $dataHora->item(0)->nodeValue);
-                $response->setData($data);    
                 
+                //retornando sucesso true, e data de cancelamento da NFSe
+                $data = array(
+                    'sucesso' => $nfse->getElementsByTagName("Sucesso")->item(0)->nodeValue, 
+                    'data'    => $nfse->getElementsByTagName("DataHora")->item(0)->nodeValue
+                );
+                $response->setData($data);    
+                $response->setStatus(true);
+
                 /* Verificando se o cancelamento foi realizado com sucesso */
-                if($sucesso->item(0)->nodeValue == false){
-                    $error = new Error();                
-                    $error->codigo = $nfse->getElementsByTagName('Codigo')->item(0)->nodeValue;
-                    $error->mensagem = $nfse->getElementsByTagName('Mensagem')->item(0)->nodeValue;
-                    $error->correcao = $nfse->getElementsByTagName('Correcao')->item(0)->nodeValue;
-                    $response->addError($error);            
-                    $response->setStatus(false);
+                if($nfse->getElementsByTagName("Sucesso")->item(0)->nodeValue == false){
+                    $getRespostaNFSe = $nfse->getElementsByTagName('MensagemRetorno');
+                    foreach($getRespostaNFSe as $respostaNFSe){
+                        $error = new Error();                
+                        $error->codigo = $respostaNFSe->getElementsByTagName('Codigo')->item(0)->nodeValue;
+                        $error->mensagem = $respostaNFSe->getElementsByTagName('Mensagem')->item(0)->nodeValue;
+                        $error->correcao = $respostaNFSe->getElementsByTagName('Correcao')->item(0)->nodeValue;
+                        $response->addError($error);            
+                        $response->setStatus(false);
+                    }
                 }
             } 
         }
