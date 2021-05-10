@@ -454,7 +454,7 @@ class RequestService
             $response->addError($error);            
             $response->setStatus(false);                       
         }else {        
-            
+            Storage::disk('local')->put('nfse/XML_NFSE_RETORNO_CANCELAMENTO.xml', $result);
             $xmlObj = new \DOMDocument();
             $xmlObj->loadXML($result);                
             $getNFSe = $xmlObj->getElementsByTagName('CancelarNfseResposta');                    
