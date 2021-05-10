@@ -469,7 +469,8 @@ class RequestService
                 $response->setStatus(true);
 
                 /* Verificando se o cancelamento foi realizado com sucesso */
-                if($nfse->getElementsByTagName("Sucesso")->item(0)->nodeValue == false){
+                if($data['sucesso'] == 'false'){
+
                     $getRespostaNFSe = $nfse->getElementsByTagName('MensagemRetorno');
                     foreach($getRespostaNFSe as $respostaNFSe){
                         $error = new Error();                
