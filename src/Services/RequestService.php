@@ -464,7 +464,17 @@ class RequestService
                 $sucesso = $nfse->getElementsByTagName("Sucesso");
                 $dataHora = $nfse->getElementsByTagName("DataHora");    
                 $data = array('sucesso' => $sucesso->item(0)->nodeValue, 'data' => $dataHora->item(0)->nodeValue);
-                $response->setData($data);                
+                $response->setData($data);    
+                
+                /* Verificando se o cancelamento foi realizado com sucesso */
+                if($sucesso->item(0)->nodeValue == false){
+                    $error = new Error();                
+                    $error->codigo = $nfse->getElementsByTagName('Codigo')->item(0)->nodeValue;
+                    $error->mensagem = $nfse->getElementsByTagName('Mensagem')->item(0)->nodeValue;
+                    $error->correcao = $nfse->getElementsByTagName('Correcao')->item(0)->nodeValue;
+                    $response->addError($error);            
+                    $response->setStatus(false);
+                }
             } 
         }
         return $response;
