@@ -52,6 +52,12 @@
                     {!! array_xml_get($rps['tomador']['contato'], 'email') !!}
                 </ns4:Contato>
             </ns4:Tomador>
+            @if(isset($rps['construcao_civil']))
+            <ns4:ConstrucaoCivil>
+                {!! array_xml_get($rps['construcao_civil'], 'codigo_obra') !!}
+                {!! array_xml_get($rps['construcao_civil'], 'art') !!}
+            </ns4:ConstrucaoCivil>
+            @endif
         </ns4:InfRps>
     </ns4:Rps>
     @endforeach
